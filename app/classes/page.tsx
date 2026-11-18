@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { CLASSES } from '@/lib/constants';
 import { Photo } from '@/components/photo';
+import { ScrollReveal } from '@/components/scroll-reveal';
 
 export const metadata: Metadata = {
   title: 'Занятия High Heels, Strip Plastic и стретчинг — FORM',
@@ -20,18 +21,20 @@ export default function ClassesPage() {
       </p>
 
       <div className="mt-12 grid gap-6 md:grid-cols-3">
-        {CLASSES.map((c) => (
-          <div key={c.slug} className="card flex flex-col">
-            <Photo src={c.photo} alt={c.name} label={c.name} />
-            <h2 className="font-display text-2xl">{c.name}</h2>
-            <p className="mt-3 text-sm text-muted">Уровень: {c.level}</p>
-            <p className="mt-3 text-sm text-muted">Что даёт: {c.gives}</p>
-            <p className="mt-3 text-sm text-muted">Длительность: {c.duration}</p>
-            <p className="mt-3 text-sm text-muted">Как проходит: {c.how}</p>
-            <p className="mt-4 text-sm text-gold">{c.price}</p>
-            <p className="mt-2 text-sm text-muted">Ведёт: {c.instructor}</p>
-            <Link href="/schedule" className="btn-primary mt-6">Записаться</Link>
-          </div>
+        {CLASSES.map((c, index) => (
+          <ScrollReveal key={c.slug} delay={index * 150}>
+            <div className="card flex flex-col h-full group transition-all duration-300 hover:-translate-y-2 hover:border-gold/30 hover:shadow-[0_20px_40px_-20px_rgba(198,169,107,0.15)]">
+              <Photo src={c.photo} alt={c.name} label={c.name} className="transition-transform duration-500 group-hover:scale-[1.02]" />
+              <h2 className="mt-4 font-display text-2xl transition-colors group-hover:text-gold">{c.name}</h2>
+              <p className="mt-3 text-sm text-muted">Уровень: {c.level}</p>
+              <p className="mt-3 text-sm text-muted">Что даёт: {c.gives}</p>
+              <p className="mt-3 text-sm text-muted">Длительность: {c.duration}</p>
+              <p className="mt-3 text-sm text-muted">Как проходит: {c.how}</p>
+              <p className="mt-4 text-sm text-gold">{c.price}</p>
+              <p className="mt-2 text-sm text-muted">Ведёт: {c.instructor}</p>
+              <Link href="/schedule" className="btn-primary mt-6 w-full">Записаться</Link>
+            </div>
+          </ScrollReveal>
         ))}
       </div>
 
