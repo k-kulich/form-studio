@@ -221,7 +221,7 @@ export default function HomePage() {
           onClose={() => setInstructorModal(null)}
           title={instructorModal.name}
           subtitle={instructorModal.direction}
-          photos={[instructorModal.photo, instructorModal.actionPhoto]}
+          photos={[instructorModal.photo]}
           photoRatio="aspect-[3/4]"
           description={instructorModal.longBio}
           cta={{ label: 'Записаться на занятие', href: '/schedule' }}
